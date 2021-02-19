@@ -1,29 +1,26 @@
 package com.tmidevelopment.saolourenco.resources;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tmidevelopment.saolourenco.domain.Estado;
+import com.tmidevelopment.saolourenco.services.EstadoService;
 
 @RestController
 @RequestMapping(value = "/estados")
 public class EstadoResource {
 
-	@GetMapping
-	public List<Estado> listar() {
-
-		Estado e1 = new Estado(1, "RJ");
-		Estado e2 = new Estado(2, "SP");
-
-		List<Estado> lista = new ArrayList<>();
-		lista.add(e1);
-		lista.add(e2);
-
-		return lista;
+	@Autowired
+	private EstadoService service;
+	
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<?> findById(@PathVariable Integer id) {
+		Estado obj = service.findById(id);
+		return ResponseEntity.ok().body(obj);
 	}
 
 }
