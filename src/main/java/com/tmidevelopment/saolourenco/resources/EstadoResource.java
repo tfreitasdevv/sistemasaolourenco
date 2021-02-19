@@ -17,7 +17,7 @@ public class EstadoResource {
 	public List<Estado> listar() {
 
 		Estado e1 = new Estado(1, "RJ");
-		Estado e2 = new Estado(1, "SP");
+		Estado e2 = new Estado(2, "SP");
 
 		List<Estado> lista = new ArrayList<>();
 		lista.add(e1);
