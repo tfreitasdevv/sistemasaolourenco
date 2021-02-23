@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.tmidevelopment.saolourenco.domain.Batismo;
 import com.tmidevelopment.saolourenco.domain.Celebrante;
 import com.tmidevelopment.saolourenco.domain.Cidade;
+import com.tmidevelopment.saolourenco.domain.Crisma;
 import com.tmidevelopment.saolourenco.domain.Endereco;
 import com.tmidevelopment.saolourenco.domain.Estado;
 import com.tmidevelopment.saolourenco.domain.Paroquia;
@@ -17,6 +18,7 @@ import com.tmidevelopment.saolourenco.domain.Pessoa;
 import com.tmidevelopment.saolourenco.repositories.BatismoRepository;
 import com.tmidevelopment.saolourenco.repositories.CelebranteRepository;
 import com.tmidevelopment.saolourenco.repositories.CidadeRepository;
+import com.tmidevelopment.saolourenco.repositories.CrismaRepository;
 import com.tmidevelopment.saolourenco.repositories.EnderecoRepository;
 import com.tmidevelopment.saolourenco.repositories.EstadoRepository;
 import com.tmidevelopment.saolourenco.repositories.ParoquiaRepository;
@@ -39,6 +41,8 @@ public class SaolourencoApplication implements CommandLineRunner {
 	private CelebranteRepository celebranteRepository;
 	@Autowired
 	private BatismoRepository batismoRepository;
+	@Autowired
+	private CrismaRepository crismaRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SaolourencoApplication.class, args);
@@ -78,17 +82,17 @@ public class SaolourencoApplication implements CommandLineRunner {
 		paroquiaRepository.saveAll(Arrays.asList(par1, par2));
 
 		Pessoa p1 = new Pessoa(null, "Maria", null, "F", "Tiago", "Madalena", "10831125039", "maria@email.com", end1,
-				par1, null);
+				par1, null, null);
 		Pessoa p2 = new Pessoa(null, "João", null, "M", "Lucas", "Maria", "79665182056", "joao@email.com", end2, par1,
-				null);
+				null, null);
 		Pessoa p3 = new Pessoa(null, "Carlos", null, "M", "Mateus", "Laura", "74626615007", "carlos@email.com", end3,
-				par1, null);
+				par1, null, null);
 		Pessoa p4 = new Pessoa(null, "Letícia", null, "F", "João", "Isabel", "63180245069", "leticia@email.com", end4,
-				par1, null);
+				par1, null, null);
 		Pessoa p5 = new Pessoa(null, "Amanda", null, "F", "Marcos", "Carla", "81667720007", "amanda@email.com", end5,
-				par2, null);
+				par2, null, null);
 		Pessoa p6 = new Pessoa(null, "Luana", null, "F", "Tadeu", "Marcia", "47058236054", "luana@email.com", end6,
-				par2, null);
+				par2, null, null);
 
 		p1.getTelefones().addAll(Arrays.asList("65446981", "54879651"));
 		p2.getTelefones().addAll(Arrays.asList("65446982", "54879652"));
@@ -110,8 +114,13 @@ public class SaolourencoApplication implements CommandLineRunner {
 
 		batismoRepository.saveAll(Arrays.asList(bat1, bat2));
 
+		Crisma cri1 = new Crisma(null, null, "54", "160", "Rodrigo", p1, cel1);
+
+		crismaRepository.saveAll(Arrays.asList(cri1));
+
 		p5.setBatismo(bat1);
 		p6.setBatismo(bat2);
+		p1.setCrisma(cri1);
 
 		pessoaRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6));
 
