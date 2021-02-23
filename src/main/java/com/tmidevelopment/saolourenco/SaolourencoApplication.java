@@ -1,5 +1,6 @@
 package com.tmidevelopment.saolourenco;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +60,8 @@ public class SaolourencoApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
 		Estado e1 = new Estado(null, "RJ");
 		Estado e2 = new Estado(null, "SP");
 		Estado e3 = new Estado(null, "MG");
@@ -89,18 +92,18 @@ public class SaolourencoApplication implements CommandLineRunner {
 
 		paroquiaRepository.saveAll(Arrays.asList(par1, par2));
 
-		Pessoa p1 = new Pessoa(null, "Maria", null, "F", "Tiago", "Madalena", "10831125039", "maria@email.com", end1,
-				par1, null, null, null, null);
-		Pessoa p2 = new Pessoa(null, "João", null, "M", "Lucas", "Maria", "79665182056", "joao@email.com", end2, par1,
-				null, null, null, null);
-		Pessoa p3 = new Pessoa(null, "Carlos", null, "M", "Mateus", "Laura", "74626615007", "carlos@email.com", end3,
-				par1, null, null, null, null);
-		Pessoa p4 = new Pessoa(null, "Letícia", null, "F", "João", "Isabel", "63180245069", "leticia@email.com", end4,
-				par1, null, null, null, null);
-		Pessoa p5 = new Pessoa(null, "Amanda", null, "F", "Marcos", "Carla", "81667720007", "amanda@email.com", end5,
-				par2, null, null, null, null);
-		Pessoa p6 = new Pessoa(null, "Luana", null, "F", "Tadeu", "Marcia", "47058236054", "luana@email.com", end6,
-				par2, null, null, null, null);
+		Pessoa p1 = new Pessoa(null, "Maria", sdf.parse("06/08/1991"), "F", "Tiago", "Madalena", "10831125039",
+				"maria@email.com", end1, par1, null, null, null, null);
+		Pessoa p2 = new Pessoa(null, "João", sdf.parse("03/08/1990"), "M", "Lucas", "Maria", "79665182056",
+				"joao@email.com", end2, par1, null, null, null, null);
+		Pessoa p3 = new Pessoa(null, "Carlos", sdf.parse("13/05/1989"), "M", "Mateus", "Laura", "74626615007",
+				"carlos@email.com", end3, par1, null, null, null, null);
+		Pessoa p4 = new Pessoa(null, "Letícia", sdf.parse("18/06/1988"), "F", "João", "Isabel", "63180245069",
+				"leticia@email.com", end4, par1, null, null, null, null);
+		Pessoa p5 = new Pessoa(null, "Amanda", sdf.parse("25/01/2019"), "F", "Marcos", "Carla", "81667720007",
+				"amanda@email.com", end5, par2, null, null, null, null);
+		Pessoa p6 = new Pessoa(null, "Luana", sdf.parse("16/05/2018"), "F", "Tadeu", "Marcia", "47058236054",
+				"luana@email.com", end6, par2, null, null, null, null);
 
 		p1.getTelefones().addAll(Arrays.asList("65446981", "54879651"));
 		p2.getTelefones().addAll(Arrays.asList("65446982", "54879652"));
@@ -117,21 +120,21 @@ public class SaolourencoApplication implements CommandLineRunner {
 
 		celebranteRepository.saveAll(Arrays.asList(cel1, cel2, cel3));
 
-		Batismo bat1 = new Batismo(null, null, "51", "158", "Adriano", "Aline", null, p5, cel1);
-		Batismo bat2 = new Batismo(null, null, "52", "159", "Caio", "Lívia", "Carina", p6, cel2);
+		Batismo bat1 = new Batismo(null, sdf.parse("16/02/2021"), "51", "158", "Adriano", "Aline", null, p5, cel1);
+		Batismo bat2 = new Batismo(null, sdf.parse("17/02/2021"), "52", "159", "Caio", "Lívia", "Carina", p6, cel2);
 
 		batismoRepository.saveAll(Arrays.asList(bat1, bat2));
 
-		Crisma cri1 = new Crisma(null, null, "54", "161", "Rodrigo", p1, cel1);
+		Crisma cri1 = new Crisma(null, sdf.parse("09/02/2021"), "54", "161", "Rodrigo", p1, cel1);
 
 		crismaRepository.saveAll(Arrays.asList(cri1));
 
-		Casamento cas1 = new Casamento(null, null, "53", "160", p3, p4, cel1);
+		Casamento cas1 = new Casamento(null, sdf.parse("10/02/2021"), "53", "160", p3, p4, cel1);
 		cas1.getTestemunhas().addAll(Arrays.asList("Maria", "José"));
 
 		casamentoRepository.saveAll(Arrays.asList(cas1));
 
-		PrimeiraEucaristia pri1 = new PrimeiraEucaristia(null, null, "55", "162", p2, cel1);
+		PrimeiraEucaristia pri1 = new PrimeiraEucaristia(null, sdf.parse("08/02/2021"), "55", "162", p2, cel1);
 		pri1.getCatequistas().addAll(Arrays.asList("Carla", "Bruna"));
 
 		primeiraEucaristiaRepository.saveAll(Arrays.asList(pri1));
