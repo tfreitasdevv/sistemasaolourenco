@@ -48,11 +48,14 @@ public class Pessoa implements Serializable {
 	@OneToOne
 	private Crisma crisma;
 
+	@OneToOne
+	private Casamento casamento;
+
 	public Pessoa() {
 	}
 
 	public Pessoa(Integer id, String nome, Date nascimento, String sexo, String nomeDoPai, String nomeDaMae, String cpf,
-			String email, Endereco endereco, Paroquia paroquia, Batismo batismo, Crisma crisma) {
+			String email, Endereco endereco, Paroquia paroquia, Batismo batismo, Crisma crisma, Casamento casamento) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -66,6 +69,7 @@ public class Pessoa implements Serializable {
 		this.paroquia = paroquia;
 		this.batismo = batismo;
 		this.crisma = crisma;
+		this.casamento = casamento;
 	}
 
 	public Integer getId() {
@@ -170,6 +174,14 @@ public class Pessoa implements Serializable {
 
 	public void setCrisma(Crisma crisma) {
 		this.crisma = crisma;
+	}
+
+	public Casamento getCasamento() {
+		return casamento;
+	}
+
+	public void setCasamento(Casamento casamento) {
+		this.casamento = casamento;
 	}
 
 	@Override
