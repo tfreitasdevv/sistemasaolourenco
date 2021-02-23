@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Pessoa implements Serializable {
@@ -41,11 +42,14 @@ public class Pessoa implements Serializable {
 	@CollectionTable(name = "TELEFONE")
 	private Set<String> telefones = new HashSet<>();
 
+	@OneToOne
+	private Batismo batismo;
+
 	public Pessoa() {
 	}
 
 	public Pessoa(Integer id, String nome, Date nascimento, String sexo, String nomeDoPai, String nomeDaMae, String cpf,
-			String email, Endereco endereco, Paroquia paroquia) {
+			String email, Endereco endereco, Paroquia paroquia, Batismo batismo) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -57,6 +61,7 @@ public class Pessoa implements Serializable {
 		this.email = email;
 		this.endereco = endereco;
 		this.paroquia = paroquia;
+		this.batismo = batismo;
 	}
 
 	public Integer getId() {
@@ -145,6 +150,14 @@ public class Pessoa implements Serializable {
 
 	public void setTelefones(Set<String> telefones) {
 		this.telefones = telefones;
+	}
+
+	public Batismo getBatismo() {
+		return batismo;
+	}
+
+	public void setBatismo(Batismo batismo) {
+		this.batismo = batismo;
 	}
 
 	@Override
