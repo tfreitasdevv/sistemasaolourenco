@@ -29,7 +29,7 @@ public class PessoaResource {
 	}
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<?> findById(@PathVariable Integer id) {
+	public ResponseEntity<Pessoa> findById(@PathVariable Integer id) {
 		Pessoa obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
