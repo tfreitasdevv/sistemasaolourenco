@@ -4,12 +4,15 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Paroquia implements Serializable {
@@ -20,9 +23,10 @@ public class Paroquia implements Serializable {
 	private Integer id;
 	private String nome;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Endereco endereco;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "paroquia")
 	private List<Pessoa> paroquianos = new ArrayList<>();
 

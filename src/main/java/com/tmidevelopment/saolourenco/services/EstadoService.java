@@ -34,8 +34,9 @@ public class EstadoService {
 	}
 
 	public Estado update(Estado obj) {
-		findById(obj.getId());
-		return repo.save(obj);
+		Estado newObj = findById(obj.getId());
+		updateData(newObj, obj);
+		return repo.save(newObj);
 	}
 
 	public void delete(Integer id) {
@@ -49,6 +50,10 @@ public class EstadoService {
 
 	public Estado fromDTO(EstadoDTO objDto) {
 		return new Estado(objDto.getId(), objDto.getNome());
+	}
+
+	private void updateData(Estado newObj, Estado obj) {
+		newObj.setNome(obj.getNome());
 	}
 
 }
