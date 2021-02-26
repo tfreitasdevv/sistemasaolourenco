@@ -23,7 +23,7 @@ public class Paroquia implements Serializable {
 	private Integer id;
 	private String nome;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.REMOVE)
 	private Endereco endereco;
 
 	@JsonIgnore

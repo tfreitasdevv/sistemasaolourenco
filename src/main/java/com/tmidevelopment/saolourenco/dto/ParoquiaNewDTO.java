@@ -3,6 +3,7 @@ package com.tmidevelopment.saolourenco.dto;
 import java.io.Serializable;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 public class ParoquiaNewDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -20,7 +21,7 @@ public class ParoquiaNewDTO implements Serializable {
 	@NotEmpty(message = "Preenchimento obrigatório")
 	private String cep;
 
-	@NotEmpty(message = "Preenchimento obrigatório")
+	@NotNull(message = "Preenchimento obrigatório")
 	private Integer cidadeId;
 
 	public ParoquiaNewDTO() {
