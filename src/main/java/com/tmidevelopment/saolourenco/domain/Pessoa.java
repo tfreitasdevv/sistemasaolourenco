@@ -16,6 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Pessoa implements Serializable {
@@ -45,15 +46,19 @@ public class Pessoa implements Serializable {
 	@CollectionTable(name = "TELEFONE")
 	private Set<String> telefones = new HashSet<>();
 
+	@JsonIgnore
 	@OneToOne
 	private Batismo batismo;
 
+	@JsonIgnore
 	@OneToOne
 	private Crisma crisma;
 
+	@JsonIgnore
 	@OneToOne
 	private Casamento casamento;
 
+	@JsonIgnore
 	@OneToOne
 	private PrimeiraEucaristia primeiraEucaristia;
 
