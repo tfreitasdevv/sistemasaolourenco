@@ -3,28 +3,48 @@ package com.tmidevelopment.saolourenco.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.br.CPF;
+
+import com.tmidevelopment.saolourenco.services.validation.PessoaInsert;
+
+@PessoaInsert
 public class PessoaNewDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@NotEmpty(message = "Preenchimento obrigatório")
 	private String nome;
+	@NotNull(message = "Preenchimento obrigatório")
 	private Date nascimento;
+	@NotEmpty(message = "Preenchimento obrigatório")
 	private String sexo;
 	private String nomeDoPai;
 	private String nomeDaMae;
+	@CPF
 	private String cpf;
+	@NotEmpty(message = "Preenchimento obrigatório")
 	private String email;
 
+	@NotEmpty(message = "Preenchimento obrigatório")
 	private String telefone1;
 	private String telefone2;
 
+	@NotEmpty(message = "Preenchimento obrigatório")
 	private String logradouro;
+	@NotEmpty(message = "Preenchimento obrigatório")
 	private String numero;
 	private String complemento;
+	@NotEmpty(message = "Preenchimento obrigatório")
 	private String bairro;
+	@NotEmpty(message = "Preenchimento obrigatório")
 	private String cep;
 
+	@NotNull(message = "Preenchimento obrigatório")
 	private Integer cidadeId;
 
+	@NotNull(message = "Preenchimento obrigatório")
 	private Integer paroquiaId;
 
 	public PessoaNewDTO() {

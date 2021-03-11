@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.tmidevelopment.saolourenco.domain.Endereco;
 import com.tmidevelopment.saolourenco.domain.Paroquia;
 import com.tmidevelopment.saolourenco.domain.Pessoa;
+import com.tmidevelopment.saolourenco.services.validation.PessoaUpdate;
 
+@PessoaUpdate
 public class PessoaDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 

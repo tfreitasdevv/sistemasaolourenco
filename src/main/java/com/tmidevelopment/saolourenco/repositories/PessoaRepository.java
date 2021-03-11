@@ -13,5 +13,8 @@ public interface PessoaRepository extends JpaRepository<Pessoa, Integer> {
 
 	@Transactional(readOnly = true)
 	public List<Pessoa> findAllByOrderByNome();
+	
+	@Transactional(readOnly = true)
+	Pessoa findByCpf(String cpf);
 
 }
