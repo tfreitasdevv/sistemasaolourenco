@@ -15,8 +15,10 @@ import com.tmidevelopment.saolourenco.domain.Crisma;
 import com.tmidevelopment.saolourenco.domain.Endereco;
 import com.tmidevelopment.saolourenco.domain.Estado;
 import com.tmidevelopment.saolourenco.domain.Paroquia;
+import com.tmidevelopment.saolourenco.domain.Perfil;
 import com.tmidevelopment.saolourenco.domain.Pessoa;
 import com.tmidevelopment.saolourenco.domain.PrimeiraEucaristia;
+import com.tmidevelopment.saolourenco.domain.Usuario;
 import com.tmidevelopment.saolourenco.repositories.BatismoRepository;
 import com.tmidevelopment.saolourenco.repositories.CasamentoRepository;
 import com.tmidevelopment.saolourenco.repositories.CelebranteRepository;
@@ -25,12 +27,18 @@ import com.tmidevelopment.saolourenco.repositories.CrismaRepository;
 import com.tmidevelopment.saolourenco.repositories.EnderecoRepository;
 import com.tmidevelopment.saolourenco.repositories.EstadoRepository;
 import com.tmidevelopment.saolourenco.repositories.ParoquiaRepository;
+import com.tmidevelopment.saolourenco.repositories.PerfilRepository;
 import com.tmidevelopment.saolourenco.repositories.PessoaRepository;
 import com.tmidevelopment.saolourenco.repositories.PrimeiraEucaristiaRepository;
+import com.tmidevelopment.saolourenco.repositories.UsuarioRepository;
 
 @Service
 public class DBService {
 
+	@Autowired
+	private PerfilRepository perfilRepository;
+	@Autowired
+	private UsuarioRepository usuarioRepository;
 	@Autowired
 	private EstadoRepository estadoRepository;
 	@Autowired
@@ -54,6 +62,19 @@ public class DBService {
 
 	public void instantiateTestDatabase() throws ParseException {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+		Perfil perfil1 = new Perfil(null, "ROLE_ADMIN");
+		Perfil perfil2 = new Perfil(null, "ROLE_DEFAULT");
+
+		perfilRepository.saveAll(Arrays.asList(perfil1, perfil2));
+
+		Usuario user1 = new Usuario(null, "admin", "admin");
+		Usuario user2 = new Usuario(null, "thiago.freitas", "123456");
+
+		user1.getPerfis().addAll(Arrays.asList(perfil1, perfil2));
+		user2.getPerfis().addAll(Arrays.asList(perfil2));
+
+		usuarioRepository.saveAll(Arrays.asList(user1, user2));
 
 		Estado e1 = new Estado(null, "RJ");
 		Estado e2 = new Estado(null, "SP");
