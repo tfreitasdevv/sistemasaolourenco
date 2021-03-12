@@ -12,6 +12,7 @@ public class UsuarioDTO implements Serializable {
 
 	private Integer id;
 	private String usuario;
+	private String email;
 	private String senha;
 	private Set<Perfil> perfis = new HashSet<>();
 
@@ -21,6 +22,7 @@ public class UsuarioDTO implements Serializable {
 	public UsuarioDTO(Usuario obj) {
 		id = obj.getId();
 		usuario = obj.getUsuario();
+		email = obj.getEmail();
 		senha = obj.getSenha();
 	}
 
@@ -38,6 +40,14 @@ public class UsuarioDTO implements Serializable {
 
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getSenha() {

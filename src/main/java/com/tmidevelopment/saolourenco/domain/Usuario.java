@@ -26,6 +26,9 @@ public class Usuario implements Serializable {
 	@Column(unique = true)
 	private String usuario;
 
+	@Column(unique = true)
+	private String email;
+
 	@JsonIgnore
 	private String senha;
 
@@ -36,10 +39,11 @@ public class Usuario implements Serializable {
 	public Usuario() {
 	}
 
-	public Usuario(Integer id, String usuario, String senha) {
+	public Usuario(Integer id, String usuario, String email, String senha) {
 		super();
 		this.id = id;
 		this.usuario = usuario;
+		this.email = email;
 		this.senha = senha;
 	}
 
@@ -73,6 +77,14 @@ public class Usuario implements Serializable {
 
 	public void setPerfis(Set<Perfil> perfis) {
 		this.perfis = perfis;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	@Override

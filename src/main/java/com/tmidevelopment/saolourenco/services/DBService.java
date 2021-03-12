@@ -68,8 +68,8 @@ public class DBService {
 
 		perfilRepository.saveAll(Arrays.asList(perfil1, perfil2));
 
-		Usuario user1 = new Usuario(null, "admin", "admin");
-		Usuario user2 = new Usuario(null, "thiago.freitas", "123456");
+		Usuario user1 = new Usuario(null, "admin", "tfreitasdevv@gmail.com", "admin");
+		Usuario user2 = new Usuario(null, "thiago.freitas", "tfreitas.ms@gmail.com", "123456");
 
 		user1.getPerfis().addAll(Arrays.asList(perfil1, perfil2));
 		user2.getPerfis().addAll(Arrays.asList(perfil2));
