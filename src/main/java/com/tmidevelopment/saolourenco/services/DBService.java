@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.tmidevelopment.saolourenco.domain.Batismo;
@@ -35,6 +36,8 @@ import com.tmidevelopment.saolourenco.repositories.UsuarioRepository;
 @Service
 public class DBService {
 
+	@Autowired
+	BCryptPasswordEncoder pe;
 	@Autowired
 	private PerfilRepository perfilRepository;
 	@Autowired
@@ -68,8 +71,8 @@ public class DBService {
 
 		perfilRepository.saveAll(Arrays.asList(perfil1, perfil2));
 
-		Usuario user1 = new Usuario(null, "admin", "tfreitasdevv@gmail.com", "admin");
-		Usuario user2 = new Usuario(null, "thiago.freitas", "tfreitas.ms@gmail.com", "123456");
+		Usuario user1 = new Usuario(null, "admin", "tfreitasdevv@gmail.com", pe.encode("123456"));
+		Usuario user2 = new Usuario(null, "thiago.freitas", "tfreitas.ms@gmail.com", pe.encode("123456"));
 
 		user1.getPerfis().addAll(Arrays.asList(perfil1, perfil2));
 		user2.getPerfis().addAll(Arrays.asList(perfil2));
